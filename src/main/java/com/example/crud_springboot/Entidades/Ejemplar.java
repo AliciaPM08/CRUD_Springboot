@@ -32,14 +32,11 @@ public class Ejemplar {
     @Column(name = "estado")
     private String estado;
 
-    @OneToMany(mappedBy = "ejemplar")
-    private Set<Prestamo> prestamos = new LinkedHashSet<>();
 
-    public Ejemplar(Integer id, Libro isbn, String estado, Set<Prestamo> prestamos) {
+    public Ejemplar(Integer id, Libro isbn, String estado) {
         this.id = id;
         this.isbn = isbn;
         this.estado = estado;
-        this.prestamos = prestamos;
     }
 
     public Ejemplar() {
@@ -69,11 +66,5 @@ public class Ejemplar {
         this.estado = estado;
     }
 
-    public Set<Prestamo> getPrestamos() {
-        return prestamos;
-    }
 
-    public void setPrestamos(Set<Prestamo> prestamos) {
-        this.prestamos = prestamos;
-    }
 }

@@ -48,10 +48,9 @@ public class Usuario {
     @Column(name = "penalizacionHasta")
     private LocalDate penalizacionHasta;
 
-    @OneToMany(mappedBy = "usuario")
-    private Set<Prestamo> prestamos = new LinkedHashSet<>();
 
-    public Usuario(Integer id, String dni, String nombre, String password, String email, String tipo, LocalDate penalizacionHasta, Set<Prestamo> prestamos) {
+
+    public Usuario(Integer id, String dni, String nombre, String password, String email, String tipo, LocalDate penalizacionHasta) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
@@ -59,7 +58,6 @@ public class Usuario {
         this.email = email;
         this.tipo = tipo;
         this.penalizacionHasta = penalizacionHasta;
-        this.prestamos = prestamos;
     }
 
     public Usuario() {
@@ -121,11 +119,4 @@ public class Usuario {
         this.penalizacionHasta = penalizacionHasta;
     }
 
-    public Set<Prestamo> getPrestamos() {
-        return prestamos;
-    }
-
-    public void setPrestamos(Set<Prestamo> prestamos) {
-        this.prestamos = prestamos;
-    }
 }

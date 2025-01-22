@@ -36,7 +36,7 @@ public class PrestamosControlador {
     }
 
     //INSERT
-    @PostMapping
+    @PostMapping("/prestamo")
     public ResponseEntity<Prestamo> addPrestamo(@Valid @RequestBody Prestamo prestamo) {
         Prestamo prestamoPersistido = this.prestamoRepositorio.save(prestamo);
         return ResponseEntity.ok().body(prestamoPersistido);

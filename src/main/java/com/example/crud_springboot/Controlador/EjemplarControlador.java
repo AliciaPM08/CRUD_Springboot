@@ -27,7 +27,7 @@ public class EjemplarControlador {
         this.repositorioLibros = repositorioLibros;
     }
 
-    //GET --> SELECT *
+    //SELECT *
     @GetMapping
     public ResponseEntity<List<Ejemplar>> getEjemplares(){
         List<Ejemplar> lista = this.repositorioEjemplares.findAll();
@@ -35,7 +35,7 @@ public class EjemplarControlador {
         return ResponseEntity.ok(lista);
     }
 
-    //GET BY ID --> SELECT BY ID
+    //SELECT BY ID
     @GetMapping("/{id}")
     @Cacheable
     public ResponseEntity<Ejemplar> getEjemplar(@PathVariable Integer id){
@@ -43,7 +43,7 @@ public class EjemplarControlador {
         return ResponseEntity.ok(e);
     }
 
-    //POST --> INSERT
+    //INSERT
     @PostMapping("/ejemplar")
     public ResponseEntity<Ejemplar> addEjemplar(@Valid @RequestBody Ejemplar ejemplar){
         Ejemplar ejemplarPersistido = this.repositorioEjemplares.save(ejemplar);
@@ -61,7 +61,6 @@ public class EjemplarControlador {
         ejemplar.setId(id);
         ejemplar.setEstado(estado);
 
-        // Asignamos el libro al ejemplar
         Libro libro = repositorioLibros.findById(isbn).orElse(null);
 
         ejemplar.setIsbn(libro);
@@ -70,14 +69,14 @@ public class EjemplarControlador {
         return ResponseEntity.created(null).body(ejemplarPersistido);
     }
 
-    //PUT --> UPDATE
+    //UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<Ejemplar> updateEjemplar(@RequestBody Ejemplar ejemplar, @PathVariable Integer id){
         Ejemplar ejemplarPersistido = repositorioEjemplares.save(ejemplar);
         return ResponseEntity.ok().body(ejemplarPersistido);
     }
 
-    //DELETE --> ELIMINAR
+    //DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEjemplar(@PathVariable Integer id){
         repositorioEjemplares.deleteById(id);
